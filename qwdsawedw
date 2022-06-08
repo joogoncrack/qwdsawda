@@ -1,0 +1,26 @@
+
+local defaultSpeed = 16 
+local speed = 50 
+
+
+
+_G.Speeding = true
+
+local isSpeeding = false
+
+game:GetService("UserInputService").InputBegan:connect(function(inputkey)
+   if inputkey.KeyCode == Enum.KeyCode.z then
+       if isSpeeding == false then
+           
+           game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+           isSpeeding = true
+           else
+               
+               game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = defaultSpeed
+               isSpeeding = false
+           end
+       
+       
+       end
+   
+   end)
