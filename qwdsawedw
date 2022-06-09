@@ -1,26 +1,33 @@
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
 
-local defaultSpeed = 16 
-local speed = 50 
+key = "z"
 
+toggled = false
 
+lastspeed = nil
 
-_G.Speeding = true
+speed = 50
 
-local isSpeeding = false
+mouse.KeyDown:connect(function(k)
+k = k:lower()
 
-game:GetService("UserInputService").InputBegan:connect(function(inputkey)
-   if inputkey.KeyCode == Enum.KeyCode.z then
-       if isSpeeding == false then
-           
-           game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
-           isSpeeding = true
-           else
-               
-               game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = defaultSpeed
-               isSpeeding = false
-           end
-       
-       
+if k == key then
+
+       if toggled == false then
+           toggled = true
+           lastspeed = plr.Character.Humanoid.WalkSpeed
+
+           plr.Character.Humanoid.WalkSpeed = speed
+
+          else
+
+       toggled = false
+
+       plr.Character.Humanoid.WalkSpeed = lastspeed
+
        end
-   
-   end)
+
+end
+
+end)
